@@ -105,7 +105,6 @@ export const categories = [
         name: '友链',
         iconClass: 'ri-user-5-line',
         href: '/friends',
-        target: '_target',
       },
 	  /*
   {

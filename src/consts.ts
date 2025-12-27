@@ -81,31 +81,32 @@ export const categories = [
   //   iconClass: "ri-quill-pen-line",
   //   href: "/memos",
   // },
-  {
-    name: "归档",
-    iconClass: "ri-archive-line",
-    href: "/archive/1",
-  },
+
   {
     name: "留言",
     iconClass: "ri-chat-1-line",
     href: "/message",
   },
+      {
+        name: '友链',
+        iconClass: 'ri-user-5-line',
+        href: '/friends',
+      },
   {
-    name: "搜索",
-    iconClass: "ri-search-line",
-    href: "/search",
+    name: "归档",
+    iconClass: "ri-archive-line",
+    href: "/archive/1",
   },
         {
         name: '关于',
         iconClass: 'ri-information-line',
         href: '/about',
       },
-      {
-        name: '友链',
-        iconClass: 'ri-user-5-line',
-        href: '/friends',
-      },
+  {
+    name: "搜索",
+    iconClass: "ri-search-line",
+    href: "/search",
+  },
 	  /*
   {
     name: "More",
@@ -180,6 +181,12 @@ export const friendshipLinks =
     //   avatar: "https://cirry.cn/avatar.png",
     //   description: '前端开发的日常'
     // },
+    {
+       name: "微微道",
+      url: 'https://c.252599.xyz',
+      avatar: "https://c.252599.xyz/media/website/logo.png",
+      description: '前端开发的日常'
+   },
   ]
 
 /**

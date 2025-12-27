@@ -29,7 +29,7 @@ export const site = {
   author: "Astro-Yi", // required
   avatar: '/avatar.png', // required
   url: 'https://www.252599.xyz', // required
-  baseUrl: '/yi', // When using GitHubPages, you must enter the repository name startWith '/'. e.g. '/astro-blog'
+  baseUrl: '', // When using GitHubPages, you must enter the repository name startWith '/'. e.g. '/astro-blog'
   motto: 'Actions speak louder than words.',
   recentBlogSize: 5,
   archivePageSize: 25,

@@ -28,8 +28,8 @@ export const site = {
   description: 'Welcome to my independent blog website! ',
   author: "Astro-Yi", // required
   avatar: '/avatar.png', // required
-  url: 'https://astro-yi-nu.vercel.app', // required
-  baseUrl: '', // When using GitHubPages, you must enter the repository name startWith '/'. e.g. '/astro-blog'
+  url: 'https://www.252599.xyz', // required
+  baseUrl: '/yi', // When using GitHubPages, you must enter the repository name startWith '/'. e.g. '/astro-blog'
   motto: 'Actions speak louder than words.',
   recentBlogSize: 5,
   archivePageSize: 25,
@@ -49,7 +49,7 @@ export const site = {
  * memosPageSize {number} 10
  */
 export const config = {
-  lang: 'en', // en | zh-cn | zh-Hant | cs
+  lang: 'zh-cn', // en | zh-cn | zh-Hant | cs
   codeFoldingStartLines: 16, // Need to re-run the project to take effect
 
   // memos config

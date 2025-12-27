@@ -28,7 +28,7 @@ export const site = {
   description: 'Welcome to my independent blog website! ',
   author: "Astro-Yi", // required
   avatar: '/avatar.png', // required
-  url: 'https://www.252599.xyz', // required
+  url: 'https://y.252599.xyz', // required
   baseUrl: '', // When using GitHubPages, you must enter the repository name startWith '/'. e.g. '/astro-blog'
   motto: 'Actions speak louder than words.',
   recentBlogSize: 5,

@@ -182,9 +182,9 @@ export const friendshipLinks =
     //   description: '前端开发的日常'
     // },
     {
-       name: "微微道",
+       name: '微微道',
       url: 'https://c.252599.xyz',
-      avatar: "https://c.252599.xyz/media/website/0.webp",
+      avatar: 'https://c.252599.xyz/media/website/0.webp',
       description: '前端开发的日常'
    },
   ]

@@ -184,7 +184,7 @@ export const friendshipLinks =
     {
        name: "微微道",
       url: 'https://c.252599.xyz',
-      avatar: "https://c.252599.xyz/media/website/logo.png",
+      avatar: "https://c.252599.xyz/media/website/0.webp",
       description: '前端开发的日常'
    },
   ]

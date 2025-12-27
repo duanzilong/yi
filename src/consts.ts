@@ -67,12 +67,12 @@ export const config = {
  */
 export const categories = [
   {
-    name: "Blog",
+    name: "博客",
     iconClass: "ri-draft-line",
     href: "/blog/1",
   },
   {
-    name: "Feed",
+    name: "动态",
     iconClass: "ri-lightbulb-flash-line",
     href: "/feed/1",
   },
@@ -82,38 +82,41 @@ export const categories = [
   //   href: "/memos",
   // },
   {
-    name: "Archive",
+    name: "归档",
     iconClass: "ri-archive-line",
     href: "/archive/1",
   },
   {
-    name: "Message",
+    name: "留言",
     iconClass: "ri-chat-1-line",
     href: "/message",
   },
   {
-    name: "Search",
+    name: "搜索",
     iconClass: "ri-search-line",
     href: "/search",
   },
+        {
+        name: '关于',
+        iconClass: 'ri-information-line',
+        href: '/about',
+      },
+      {
+        name: '友链',
+        iconClass: 'ri-user-5-line',
+        href: '/friends',
+        target: '_target',
+      },
+	  /*
   {
     name: "More",
     iconClass: "ri-more-fill",
     href: "javascript:void(0);",
     children: [
-      {
-        name: 'About',
-        iconClass: 'ri-information-line',
-        href: '/about',
-      },
-      {
-        name: 'Friends',
-        iconClass: 'ri-user-5-line',
-        href: '/friends',
-        target: '_self',
-      },
+
     ]
   }
+  */
 ]
 
 /**

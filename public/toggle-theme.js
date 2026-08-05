@@ -25,36 +25,34 @@ function setPreference() {
 
 function reflectPreference() {
   document.firstElementChild.setAttribute("data-theme", themeValue);
-
   document.querySelector("#theme-btn")?.setAttribute("aria-label", themeValue);
+  document.querySelector("#theme-btn-mobile")?.setAttribute("aria-label", themeValue);
 }
 
 // set early so no page flashes / CSS is made aware
 reflectPreference();
 
-function init() {
-  // set on load so screen readers can get the latest value on the button
-  reflectPreference();
+// The toggle button is re-created on every ClientRouter (View Transitions)
+// navigation, so a listener bound directly to #theme-btn is lost after the
+// first page. Bind once to `document` — which is never swapped — via event
+// delegation, and refresh the button's aria-label on each page load.
+// The guard keeps this idempotent if the inline script ever re-executes.
+if (!window.__themeToggleBound) {
+  window.__themeToggleBound = true;
 
-  // now this script can find and listen for clicks on the control
-  document.querySelector("#theme-btn")?.addEventListener("click", () => {
+  document.addEventListener("click", (event) => {
+    if (!event.target.closest("#theme-btn, #theme-btn-mobile")) return;
     themeValue = themeValue === "light" ? "dark" : "light";
     setPreference();
   });
-  document.querySelector("#theme-btn-mobile")?.addEventListener("click", () => {
-    themeValue = themeValue === "light" ? "dark" : "light";
-    setPreference();
-  });
+
+  // re-apply aria-label to the freshly-swapped button after each navigation
+  document.addEventListener("astro:page-load", reflectPreference);
+
+  // sync with system changes
+  window.matchMedia("(prefers-color-scheme: dark)")
+    .addEventListener("change", ({matches: isDark}) => {
+      themeValue = isDark ? "dark" : "light";
+      setPreference();
+    });
 }
-
-
-window.onload = () => {
-  init()
-};
-
-// sync with system changes
-window.matchMedia("(prefers-color-scheme: dark)")
-  .addEventListener("change", ({matches: isDark}) => {
-    themeValue = isDark ? "dark" : "light";
-    setPreference();
-  });

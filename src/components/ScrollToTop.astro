@@ -7,22 +7,21 @@
 </button>
 
 <script>
-  let scrollToTopBtn = document.getElementById("scrollToTopBtn");
-
-  // 监听窗口滚动事件
-  window.addEventListener('scroll', function() {
-    if (window.scrollY > 200) {
-      scrollToTopBtn.style.display = 'block';
-    } else {
-      scrollToTopBtn.style.display = 'none';
-    }
-  });
-  // 获取按钮的引用
-  scrollToTopBtn.addEventListener('click', function() {
-    window.scrollTo({
-      top: 0,
-      behavior: 'smooth' // 平滑滚动
+  // ClientRouter swaps <body> on navigation, so the button element is new on
+  // each page. Bind the click handler on astro:page-load (fires on first load
+  // + every navigation); keep the scroll listener on `window` (never swapped)
+  // and re-query the button inside it.
+  function bindScrollToTop() {
+    document.getElementById("scrollToTopBtn")?.addEventListener("click", () => {
+      window.scrollTo({ top: 0, behavior: "smooth" });
     });
+  }
+
+  window.addEventListener("scroll", () => {
+    const btn = document.getElementById("scrollToTopBtn");
+    if (btn) btn.style.display = window.scrollY > 200 ? "block" : "none";
   });
+
+  document.addEventListener("astro:page-load", bindScrollToTop);
 </script>
 

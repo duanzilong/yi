@@ -16,7 +16,7 @@ import {t} from '@/i18n/utils'
         required
         maxlength="24"
         id="search"
-        class="block w-full rounded border border-opacity-40 mt-4 bg-skin-fill text-skin-base py-3 pl-10 pr-3 placeholder:italic placeholder:text-opacity-75 focus:border-skin-accent focus:outline-none"
+        class="block w-full rounded border mt-4 bg-skin-fill text-skin-base py-3 pl-10 pr-3 placeholder:italic focus:border-skin-active focus:outline-hidden"
         placeholder={t('search.placeholder')}
         type="search"
         name="search"
@@ -68,22 +68,29 @@ import {t} from '@/i18n/utils'
 </style>
 </svg>`
 
-  const search = document.querySelector('#search');
-  const searchReadout = document.querySelector('#searchReadout');
-  const resultsList = document.querySelector('#resultsList');
+  let search, searchReadout, resultsList;
 
-  window.addEventListener('DOMContentLoaded', () => {
+  function initSearch() {
+    search = document.querySelector('#search');
+    searchReadout = document.querySelector('#searchReadout');
+    resultsList = document.querySelector('#resultsList');
+    if (!search) return;
+
     const urlParams = DOMPurify.sanitize(new URLSearchParams(window.location.search).get('q'));
     fetchSearchResults(urlParams);
-    search.value = urlParams
-    search.focus()
-  })
+    search.value = urlParams;
+    search.focus();
 
-  search.addEventListener("input", (e) => {
-    const searchTerm = DOMPurify.sanitize(search.value);
-    fetchSearchResults(searchTerm);
-    updateSearchPageUrl(searchTerm)
-  })
+    search.addEventListener("input", () => {
+      const searchTerm = DOMPurify.sanitize(search.value);
+      fetchSearchResults(searchTerm);
+      updateSearchPageUrl(searchTerm);
+    });
+  }
+
+  // ClientRouter does not re-fire DOMContentLoaded on navigation; use
+  // astro:page-load so the search box re-initialises on every visit to /search.
+  document.addEventListener('astro:page-load', initSearch);
 
   function updateReadout(length) {
     if (isNumber(length)) {

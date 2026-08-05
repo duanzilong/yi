@@ -17,10 +17,10 @@ import {t} from '@/i18n/utils'
   dayjs.extend(relativeTime);
   dayjs.locale(config.lang || 'en');
 
-  let moreBtn = document.getElementById('more-btn')
-  moreBtn.addEventListener('click', function () {
-    getMemos()
-  })
+  // ClientRouter swaps <body> on navigation; re-bind the button on each visit.
+  document.addEventListener('astro:page-load', () => {
+    document.getElementById('more-btn')?.addEventListener('click', () => getMemos());
+  });
 
   let avatar_url = ''
   let name = ''
@@ -75,10 +75,11 @@ import {t} from '@/i18n/utils'
     document.getElementById('memos').innerHTML += divs.toString();
     nextPageToken = json['nextPageToken']
 
+    const moreBtn = document.getElementById('more-btn');
     if (nextPageToken === '') {
-      moreBtn.classList.add('hidden');
+      moreBtn?.classList.add('hidden');
     } else {
-      moreBtn.classList.remove('hidden');
+      moreBtn?.classList.remove('hidden');
     }
   }
 </script>

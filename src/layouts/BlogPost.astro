@@ -55,7 +55,7 @@ const {
       <div class="grid grid-cols-4 gap-8">
         <div class="col-span-4 space-y-4 xl:col-span-3 first:space-y-2">
           <button
-            class="flex items-center outline-none cursor-pointer text-md hover:text-skin-active"
+            class="flex items-center outline-hidden cursor-pointer text-md hover:text-skin-active"
             style="background-color: inherit;"
             onclick="history.back()"
           >
@@ -80,11 +80,18 @@ const {
   import { Fancybox } from '@fancyapps/ui';
   import '@fancyapps/ui/dist/fancybox/fancybox.css';
 
+  // Fancybox.bind uses event delegation — binding once is enough and survives
+  // ClientRouter navigations (it covers [data-fancybox] elements added later).
   Fancybox.bind('[data-fancybox]');
-  // 给所有的a标签添加target属性和不追踪
-  const markdownBody = document.querySelector('.markdown-body');
-  // 如果没有markdownBody则直接返回
-  if (markdownBody) {
+
+  // The per-article work below operates on `.markdown-body`, which is re-rendered
+  // on every navigation — so re-run it on astro:page-load (fires on first load
+  // + each navigation). Otherwise images won't lazy-load / open in the lightbox
+  // and links won't open in a new tab on the second blog post you visit.
+  function bindBlogPost() {
+    const markdownBody = document.querySelector('.markdown-body');
+    if (!markdownBody) return;
+
     let images = markdownBody.querySelectorAll('img');
     const callback = (entries: IntersectionObserverEntry[]) => {
       entries.forEach((entry) => {
@@ -123,4 +130,6 @@ const {
       }
     }
   }
+
+  document.addEventListener('astro:page-load', bindBlogPost);
 </script>

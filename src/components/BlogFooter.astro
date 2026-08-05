@@ -5,7 +5,7 @@ import {formatDate} from "@/utils/formatDate.js";
 const {title, date, url} = Astro.props;
 ---
 
-<div class="border-l-4 my-4 p-4 border-l-skin-base bg-skin-card break-all">
+<div class="border-l-4 my-4 p-4 border-skin-base bg-skin-card break-all">
   {title ?
     <div>{t('footer.articleTitle')}：{title}</div> : ''}
   {

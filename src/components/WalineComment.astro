@@ -9,9 +9,15 @@
   import {comment} from "../consts";
   import "@waline/client/style";
 
-  let walineDoc = document.getElementById("waline");
-  if (comment.enable && comment.type === "waline" && walineDoc) {
-    init({
+  let walineInstance;
+
+  function initWaline() {
+    const walineDoc = document.getElementById("waline");
+    if (!comment.enable || comment.type !== "waline" || !walineDoc) return;
+    // ClientRouter re-renders #waline on each navigation: destroy the previous
+    // instance (its element is gone) before mounting a fresh one.
+    walineInstance?.destroy();
+    walineInstance = init({
       el: "#waline",
       comment: true,
       path: window.location.pathname.replace(/\/$/, ""),
@@ -26,4 +32,6 @@
       dark: 'html[data-theme="dark"]',
     });
   }
+
+  document.addEventListener("astro:page-load", initWaline);
 </script>
